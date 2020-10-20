@@ -1,0 +1,11 @@
+﻿start
+integer a
+integer b
+read a
+read b!
+write a
+b > a
+write b
+a = b
+write "maximul numerelor este"
+stop
