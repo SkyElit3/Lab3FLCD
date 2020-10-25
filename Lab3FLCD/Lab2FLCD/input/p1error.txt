@@ -7,5 +7,5 @@ write a
 b > a
 write b
 a = b
-write "maximul numerelor este"
+write maximul numerelor este
 stop

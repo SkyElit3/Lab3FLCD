@@ -37,13 +37,16 @@ namespace Lab2FLCD
             int hash_value = this.Hash(element);
             if (HashList[hash_value].size >= 0)
             {
+                MyLinkedElement point = HashList[hash_value].head;
                 for (int i = 0; i <= HashList[hash_value].size; i++)
                 {
-                    MyLinkedElement point = HashList[hash_value].head;
+                    
                     if (point.content.Equals(element))
                     {
                         return new string("" + hash_value.ToString() + " " + point.position.ToString());
                     }
+
+                    point = point.next;
                 }
             }
             return "Not found !";

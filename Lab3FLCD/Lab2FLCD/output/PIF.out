@@ -1,0 +1,21 @@
+start 0
+integer 9 0
+a 6 0
+b 7 0
+c 8 0
+d 9 1
+read 0
+x1 0 0
+x2 1 0
+= 0
+( 0
+sqrt 3 0
+* 0
+- 0
+4 0 1
+) 0
+/ 0
+2 11 0
+0 9 4
+write 0
+stop 0
