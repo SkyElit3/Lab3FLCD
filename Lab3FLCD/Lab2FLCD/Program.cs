@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
+
 namespace Lab2FLCD
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            /*
-            MyHashMap h1 = new MyHashMap();
-            h1.add("aafe");
-            h1.add("aafe");
-            h1.add("x3fa");
-            h1.add("efa");
-            //Console.WriteLine(h1.Hash(new string("abbaa")).ToString());
-            
-            Console.WriteLine(h1.search("aafe"));
-            Console.WriteLine(h1.ToString());
-            */
-            Scanner s1 = new Scanner();
-            s1.Scan();
+            Console.Write("Enter the problem name :");
+            var val = Console.ReadLine();
+            while (val != null && !val.Equals("exit"))
+            {
+                Scanner s1 = new Scanner();
+                string path = new string(@"C:\Users\SkyElit3\RiderProjects\Lab3FLCD\Lab2FLCD\input\" + val + ".txt");
+                string token = new string(@"C:\Users\SkyElit3\RiderProjects\Lab3FLCD\Lab2FLCD\input\token.in");
+                s1.Scan(path, token);
+                val = Console.ReadLine();
+            }
         }
     }
 }

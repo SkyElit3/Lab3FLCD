@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Lab2FLCD
@@ -27,26 +26,26 @@ endwhile
     public class Scanner
     {
         private MyHashMap h1;
-        private string[,] pif;
-        private int pif_length;
+        private string[,] _pif;
+        private int _pifLength;
 
         public Scanner()
         {
             h1 = new MyHashMap();
-            pif_length = 0;
+            _pifLength = 0;
         }
 
-        public void genPif(string token,string position)
+        public void GenPif(string token,string position)
         {
-            pif[pif_length, 0] = token;
-            pif[pif_length, 1] = position;
-            pif_length++;
+            _pif[_pifLength, 0] = token;
+            _pif[_pifLength, 1] = position;
+            _pifLength++;
         }
-        public void Scan()
+        public void Scan(string path,string tokenPath)
         {
-            bool found_errors = false;
+            bool foundErrors = false;
             
-            string[] tokenLines = System.IO.File.ReadAllLines(@"C:\Users\SkyElit3\RiderProjects\Lab3FLCD\Lab2FLCD\input\token.in");
+            string[] tokenLines = System.IO.File.ReadAllLines(tokenPath);
             string[,] tokens = new string[tokenLines.Length,2];
             string[] tokensSimple = new string[tokenLines.Length];
             int counter = 0;
@@ -57,62 +56,54 @@ endwhile
                 tokens[counter,1] = s.Split(' ')[1];
                 counter++;
             }
-            string path = new string(@"C:\Users\SkyElit3\RiderProjects\Lab3FLCD\Lab2FLCD\input\p2.txt");
             string[] programLines = System.IO.File.ReadAllLines(path);
-            int line_count = 1;
+            int lineCount = 1;
             string program = System.IO.File.ReadAllText(path);
             string[] programWords = program.Split(" ");
-            pif = new string[programWords.Length,2]; // initializare PIF
+            _pif = new string[programWords.Length,2]; // initializare PIF
             
             foreach (string line in programLines)
             {
                 string[] words = line.Split(' ');
-                int word_count = 0;
                 foreach (string word in words)
                 {
                     if (Array.IndexOf(tokensSimple, word) >= 0)
                     {
-                        string index = h1.search(word);
+                        string index = h1.Search(word);
                         if (index.Equals("Not found !")) // if identifier or constant is not already in the PIF , we add it then get the position
                         {
-                            h1.add(word);
-                            genPif(word,"0");
+                            h1.Add(word);
+                            GenPif(word,"0");
                         } 
                     }
-                    else if (Regex.IsMatch(word, @"^[a-zA-Z0-9]+$"))
+                    else if (Regex.IsMatch(word, @"^[a-zA-Z0-9]+$") && !Regex.IsMatch(word, @"^\d+$") )
                     {
-                        string index = h1.search(word);
+                        string index = h1.Search(word);
                         if (index.Equals("Not found !")) // if identifier or constant is not already in the PIF , we add it then get the position
                         {
-                            h1.add(word);
-                            genPif(word,h1.search(word));
-                        } 
-                        //index = h1.search(word);
-                        //int int_index = Int32.Parse(index.Split(" ")[0]);
+                            h1.Add(word);
+                            GenPif(word,h1.Search(word));
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Lexical error at line "+line_count.ToString() + " word " + word);
-                        found_errors = true;
+                        Console.WriteLine("Lexical error at line "+lineCount.ToString() + " word " + word);
+                        foundErrors = true;
                     }
-
-                    word_count++;
                 }
                 
-                line_count++;
+                lineCount++;
             }
-            //Console.WriteLine(h1.ToString());
-            // WRITE H1 TO FILE
-            if (!found_errors)
+            if (!foundErrors)
             {
                 Console.WriteLine("Lexically correct !");
                 System.IO.File.WriteAllText(@"C:\Users\SkyElit3\RiderProjects\Lab3FLCD\Lab2FLCD\output\ST.out", h1.ToString());
-                string string_pif = new string("");
-                for (int index = 0; index < pif_length; index++)
+                string stringPif = new string("");
+                for (int index = 0; index < _pifLength; index++)
                 {
-                    string_pif += pif[index, 0] + " " + pif[index, 1] + "\n";
+                    stringPif += _pif[index, 0] + " " + _pif[index, 1] + "\n";
                 }
-                System.IO.File.WriteAllText(@"C:\Users\SkyElit3\RiderProjects\Lab3FLCD\Lab2FLCD\output\PIF.out", string_pif);
+                System.IO.File.WriteAllText(@"C:\Users\SkyElit3\RiderProjects\Lab3FLCD\Lab2FLCD\output\PIF.out", stringPif);
 
             }
             else

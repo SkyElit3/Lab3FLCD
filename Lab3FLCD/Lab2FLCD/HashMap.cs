@@ -26,27 +26,27 @@ namespace Lab2FLCD
             return sum % 13;
         }
 
-        public void add(string element)
+        public void Add(string element)
         {
-            int hash_value = this.Hash(element);
-            HashList[hash_value].add(element);
+            int hashValue = this.Hash(element);
+            HashList[hashValue].Add(element);
         }
 
-        public string search(string element)
+        public string Search(string element)
         {
-            int hash_value = this.Hash(element);
-            if (HashList[hash_value].size >= 0)
+            int hashValue = this.Hash(element);
+            if (HashList[hashValue].Size >= 0)
             {
-                MyLinkedElement point = HashList[hash_value].head;
-                for (int i = 0; i <= HashList[hash_value].size; i++)
+                MyLinkedElement point = HashList[hashValue].Head;
+                for (int i = 0; i <= HashList[hashValue].Size; i++)
                 {
                     
-                    if (point.content.Equals(element))
+                    if (point.Content.Equals(element))
                     {
-                        return new string("" + hash_value.ToString() + " " + point.position.ToString());
+                        return new string("" + hashValue.ToString() + " " + point.Position.ToString());
                     }
 
-                    point = point.next;
+                    point = point.Next;
                 }
             }
             return "Not found !";

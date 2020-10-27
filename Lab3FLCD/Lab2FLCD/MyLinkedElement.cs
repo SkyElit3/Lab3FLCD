@@ -2,14 +2,14 @@
 {
     public class MyLinkedElement
     {
-        public string content;
-        public MyLinkedElement next;
-        public int position;
+        public string Content;
+        public MyLinkedElement Next;
+        public int Position;
 
         public MyLinkedElement()
         {
-            next = null;
-            position = 0;
+            Next = null;
+            Position = 0;
         }
     }
 }

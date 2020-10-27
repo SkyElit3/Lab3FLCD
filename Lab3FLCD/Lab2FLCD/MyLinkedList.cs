@@ -4,48 +4,48 @@ namespace Lab2FLCD
 {
     public class MyLinkedList
     {
-        public int size = -1;
-        public MyLinkedElement head;
+        public int Size = -1;
+        public MyLinkedElement Head;
 
         public MyLinkedList()
         {
-            head = null;
+            Head = null;
         }
 
-        public void add(string element)
+        public void Add(string element)
         {
-            if (head is null)
+            if (Head is null)
             {
-                head = new MyLinkedElement();
-                head.content = element;
-                size++;
-                head.position = size;
+                Head = new MyLinkedElement();
+                Head.Content = element;
+                Size++;
+                Head.Position = Size;
             }
             else
             {
-                MyLinkedElement point = head;
-                while (point.next != null)
+                MyLinkedElement point = Head;
+                while (point.Next != null)
                 {
-                    point = point.next;
+                    point = point.Next;
                 }
-                point.next = new MyLinkedElement();
-                point.next.content = element;
-                size++;
-                point.next.position = size;
+                point.Next = new MyLinkedElement();
+                point.Next.Content = element;
+                Size++;
+                point.Next.Position = Size;
             }
         }
 
         public override string ToString()
         {
-            if (size == -1)
+            if (Size == -1)
                 return "";
             string total = new string("");
-            total += "["+ head.position.ToString() + " --- " + head.content + "]";
-            MyLinkedElement point = head;
-            while (point.next != null)
+            total += "["+ Head.Position.ToString() + " --- " + Head.Content + "]";
+            MyLinkedElement point = Head;
+            while (point.Next != null)
             {
-                point = point.next;
-                total += "[" + point.position.ToString() + " --- " + point.content + "]";
+                point = point.Next;
+                total += "[" + point.Position.ToString() + " --- " + point.Content + "]";
             }
 
             return total;
