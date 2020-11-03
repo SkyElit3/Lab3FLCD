@@ -1,0 +1,12 @@
+﻿start
+integer i
+integer n
+read n
+integer max
+max = 0
+go n times
+read i
+max < i
+max = i
+stop
+stop
