@@ -138,11 +138,11 @@ namespace Lab2FLCD
                     {
                         initialState = transitionTokens[2];
                         wordBuilder += transitionTokens[1];
-                    }
-
-                    if (wordBuilder.Equals(word) && transitionTokens[2].Equals(finalState))
-                    {
-                        return true;
+                        if (wordBuilder.Equals(word) && transitionTokens[2].Equals(finalState))
+                        {
+                            return true;
+                        }
+                        break;
                     }
                 }
             }
