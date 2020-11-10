@@ -6,7 +6,7 @@ namespace Lab2FLCD
     {
         static void Main()
         {
-        /*
+        
             Console.Write("Enter the problem name :");
             var val = Console.ReadLine();
             while (val != null && !val.Equals("exit"))
@@ -17,10 +17,12 @@ namespace Lab2FLCD
                 s1.Scan(path, token);
                 val = Console.ReadLine();
             }
-            */
+            
+        /*
         FiniteAutomator f = new FiniteAutomator();
         f.ScanFile(@"C:\Users\SkyElit3\RiderProjects\Lab4FLCD\Lab2FLCD\input\FA.in");
         f.Run();
+        */
         }
     }
 }

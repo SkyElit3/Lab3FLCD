@@ -28,9 +28,11 @@ endwhile
         private MyHashMap h1;
         private string[,] _pif;
         private int _pifLength;
+        private FiniteAutomator f;
 
         public Scanner()
         {
+            f = new FiniteAutomator();
             h1 = new MyHashMap();
             _pifLength = 0;
         }
@@ -43,6 +45,8 @@ endwhile
         }
         public void Scan(string path,string tokenPath)
         {
+            f.ScanFile(@"C:\Users\SkyElit3\RiderProjects\Lab4FLCD\Lab2FLCD\input\FA.in");
+
             bool foundErrors = false;
             
             string[] tokenLines = System.IO.File.ReadAllLines(tokenPath);
@@ -76,7 +80,7 @@ endwhile
                             GenPif(word,"0");
                         } 
                     }
-                    else if (Regex.IsMatch(word, @"^[a-zA-Z0-9]+$") && !Regex.IsMatch(word, @"^\d+$") )
+                    else if (f.CheckWord(word) && !Regex.IsMatch(word, @"^\d+$") )
                     {
                         string index = h1.Search(word);
                         if (index.Equals("Not found !")) // if identifier or constant is not already in the PIF , we add it then get the position
